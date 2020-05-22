@@ -7,24 +7,29 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+//Creates only a single instance of the class
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MathUtilsTest {
 
 	MathUtils mathUtils;
 
 	@BeforeAll
-	static void beforeAllInit() {
+	void beforeAllInit() {
 		System.out.println("Initialising before all");
 	}
 
 	@BeforeEach
 	void init() {
+		System.out.println("Initialising class that needs to be tested");
 		mathUtils = new MathUtils();
 	}
 
 	@AfterEach
 	void cleanup() {
 		System.out.println("Performing cleanup");
+		mathUtils = null;
 	}
 
 	@Test
