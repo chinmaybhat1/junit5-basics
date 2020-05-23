@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.RepetitionInfo;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("When running MathUtils")
@@ -20,6 +21,7 @@ class MathUtilsTest {
 		mathUtils = new MathUtils();
 	}
 
+	@Tag("Calculator")
 	@Nested
 	@DisplayName("add method")
 	class AddTest {
@@ -40,11 +42,32 @@ class MathUtilsTest {
 	}
 
 	@Test
+	@DisplayName("subtract method")
+	@Tag("Calculator")
+	void testSubtract() {
+		int expected = 10;
+		int actual = mathUtils.subtract(10, 0);
+		assertEquals(expected, actual, () -> "should return product " + expected + " but returned " + actual);
+	}
+
+	@Test
+	@DisplayName("divide method")
+	@Tag("Calculator")
 	void testDivide() {
 		assertThrows(ArithmeticException.class, () -> mathUtils.divide(10, 0), "Divide by zero should throw");
 	}
 
+	@Test
+	@DisplayName("multiply method")
+	@Tag("Calculator")
+	void testMultiply() {
+		int expected = 0;
+		int actual = mathUtils.multiply(10, 0);
+		assertEquals(expected, actual, () -> "should return product " + expected + " but returned " + actual);
+	}
+
 	@RepeatedTest(3)
+	@Tag("Circle")
 	void testCalculateAreaOfCircle(RepetitionInfo repetitionInfo) {
 		if (1 != repetitionInfo.getCurrentRepetition()) {
 			System.out.println("Calculation area of a circle.");
