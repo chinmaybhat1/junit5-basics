@@ -31,7 +31,9 @@ class MathUtilsTest {
 		@Test
 		@DisplayName("when adding two negative numbers")
 		void testAddNegative() {
-			assertEquals(-10, mathUtils.add(-10, -20), "should return the right sum");
+			int expected = -10;
+			int actual = mathUtils.add(-10, -20);
+			assertEquals(expected, actual , () -> "should return sum " + expected + " but returned " + actual);
 		}
 	}
 
